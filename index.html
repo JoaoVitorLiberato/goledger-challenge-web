@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Desafio Goledger">
+    <meta name="description" content="Desafio Goledger - Desenvolvimento Fronted">
+    <meta name="subject" content="Goledger, desafio, react, frontend">
+    
+    <link rel="icon" type="image/png" href="/favicon.svg" />
+    <title>Desafio Goledger - Frontend</title>
+
+    <base href="/">
+    <link rel="home" href="/">
+    <link rel="canonical" href="<%= htmlWebpackPlugin.options.url %>">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="/">
+    <link href="/css/colors/theme/root.css" rel="stylesheet" />
+
+    <script>
+      document.onreadystatechange=()=>{
+        if(/interactive/.test(document.readyState)){
+          document.getElementById("root").style.display="none";
+          document.getElementById("mask--app").style.display="flex";
+        }
+        if(/complete/.test(document.readyState)){
+          document.getElementById("mask--app").style.display="none";
+          document.getElementById("root").style.display="block";
+        }
+      }
+    </script>
+
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Desafio Goledger - Frontend">
+    <meta property="og:site_name" content="Desafio Goledger - Frontend">
+    <meta property="og:description" content="Desafio Goledger - Frontend">
+    <meta property="og:url" content="Desafio Goledger - Frontend">
+    <meta property="og:image" content="/img/icons/android-chrome-maskable-512x512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/img/icons/android-chrome-maskable-512x512.png">
+    <meta name="twitter:title" content="Desafio Goledger - Frontend">
+    <meta name="twitter:description" content="Desafio Goledger - Frontend">
+    <meta name="twitter:site" content="Desafio Goledger - Frontend">
+
+    <link href="/favicon.ico" rel="icon">
+    <link href="/favicon.ico" rel="icon" type="image/x-icon">
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <link href="/img/icons/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+    <link href="/img/icons/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="/img/icons/android-chrome-96x96.png" rel="icon" type="image/png" sizes="96x96">
+    <link href="/img/icons/android-chrome-192x192.png" rel="icon" type="image/png" sizes="192x192">
+
+    <link href="/img/icons/apple-touch-icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
+    <link href="/img/icons/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="/img/icons/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="/img/icons/msapplication-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="/img/icons/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="/img/icons/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="stylesheet">
+
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <script type="text/javascript" src="/js/canonical.js"></script>
+
+    <style>
+      body {
+        overflow-anchor:none;
+        overscroll-behavior:contain;
+      }
+      .fix--overscroll-behavior {
+        overflow-y:scroll;
+        overscroll-behavior:contain;
+      }
+      #mask--app {
+        display:none;
+      }
+      #mask--app,
+      #noscript-content {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+        z-index:10000001;
+        font-size:22px;
+        padding:0;
+        margin:0;
+      }
+      #mask--app nav ul li,
+      #noscript-content nav ul li {
+        background-color:#f5f5f5;
+        box-shadow:10px 0px 30px -20px black;
+        margin:2px;
+        border-radius:4px;
+        font-size:18px;
+        padding:10px 5px;
+      }
+      #mask--app a,
+      #noscript-content a {
+        color:var(--v-primary-base);
+        text-decoration:none
+      }
+      #normal-content {
+        background-color:var(--v-primary-base);
+        width:100vw;
+        height:100vh;
+        overflow:hidden;
+      }
+      #noscript-content {
+        overflow-y:auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mask--app">
+      <div>
+        <div id="normal-content">
+          <div style="width:192px;height:192px;transform:translate(-50%,-50%);position:absolute;left:50%;top:50%;background-color:var(--v-primary-base);">
+            <img
+              src="/img/icons/android-chrome-192x192.png"
+              height="192"
+              width="192"
+              alt="Loading Desafio"
+              title="Loading Desafio"
+            ></img>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div id="noscript-content">
+        <header style="padding:14px 10px 0 10px;">
+          <img 
+            src="/img/icons/android-chrome-192x192.png"
+            height="32"
+            width="32"
+            alt="Desafio Goledger - Frontend"
+            title="Desafio Goledger - Frontend"
+          ></img>
+        </header>
+
+        <nav style="padding:0 8px;height:72px;">
+          <ul style="list-style:none;display:inline-flex;padding:0">
+            <li><a href="/">Desafio Goledger - Frontend</a></li>
+          </ul>
+        </nav>
+
+        <main style="padding:0 10px">
+          <article style="margin:10px;">
+            <p style="margin-block-start:8px;margin-block-end:8px;">
+              Desafio Goledger - Frontend
+            </p>
+          </article>
+        </main>
+
+        <footer style="padding:0 10px;">
+          <div style="padding:10px;">
+            <p>Desafio</p>
+          </div>
+        </footer>
+      </div>
+    </noscript>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
