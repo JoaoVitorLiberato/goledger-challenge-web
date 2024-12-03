@@ -3,8 +3,10 @@ import {
   Container,
   LimitationWidth,
   CardsContainer,
+  CardsContainerMobile,
   Title
 } from "../../styles/views/home/artirts"
+import Carousel from "../../components/caroucel/CaroucelCardsArtirts"
 
 function Artirts () {
   const JSON_FAKE_ARTISTAS = [
@@ -49,6 +51,12 @@ function Artirts () {
             ))
           }
         </CardsContainer>
+
+        <CardsContainerMobile>
+          <Carousel
+            slides={JSON_FAKE_ARTISTAS}
+          />
+        </CardsContainerMobile>
       </LimitationWidth>
     </Container>
   )

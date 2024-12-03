@@ -1,6 +1,7 @@
 import { FC } from "react";
 import {
   Card,
+  ContentImage,
   ImageArtirt,
   Data
 } from "../../styles/components/cards/CardArtirts"
@@ -20,10 +21,13 @@ const CardArtirts: FC<ICard> = ({
     <Card
       title={`Ouça agora ${name} e viaje para outro mundo.`}
     >
-      <ImageArtirt 
-        src={image}
-        alt={`Ouça agora ${name} e viaje para outro mundo.`}
-      />
+      <ContentImage>
+        <ImageArtirt 
+          src={image}
+          alt={`Ouça agora ${name} e viaje para outro mundo.`}
+        />
+      </ContentImage>
+
       <Data>
         <h4>{ name }</h4>
         <span>{ category }</span>
