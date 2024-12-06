@@ -15,7 +15,7 @@ function HomeView () {
 
   useEffect(() => {
     getSerchAllData()
-  }, [])
+  })
   
   const getSerchAllData = Debounce(
     async function () {
@@ -39,7 +39,7 @@ function HomeView () {
                 PLAYLIST_SONG.add({
                   [song["@key"]]: {
                     ...song,
-                    datails: {
+                    details: {
                       album: album,
                       artist: artist
                     }

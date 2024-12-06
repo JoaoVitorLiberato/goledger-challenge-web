@@ -11,6 +11,10 @@ interface playlistInterface {
   listSong: {
     [key:string]: Record<string, string, string[], number, boolean>
   }
+  player: {
+    status: "",
+    song: Record<string, string, string[], number, boolean>
+  },
 }
 
 export {

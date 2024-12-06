@@ -36,5 +36,5 @@ export const CardsContainerMobile = styled.div`
 `
 
 export const Title = styled.h2`
-  
+  text-transform: uppercase;
 `

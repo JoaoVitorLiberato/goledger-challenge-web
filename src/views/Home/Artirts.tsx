@@ -17,7 +17,7 @@ function Artists () {
     <Container>
       <LimitationWidth>
         <Title>
-          Artistas populares
+          Alguns artistas
         </Title>
 
         <CardsContainer>

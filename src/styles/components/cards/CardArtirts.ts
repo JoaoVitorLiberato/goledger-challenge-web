@@ -15,7 +15,7 @@ export const Card = styled.div`
   }
 
   @media (min-width: 501px) {
-    width: 200px;
+    width: 250px;
     height: 250px;
     margin: 10px;
   }

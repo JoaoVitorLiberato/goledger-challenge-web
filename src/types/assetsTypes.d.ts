@@ -48,7 +48,15 @@ export interface IArtist {
 }
 
 export interface IList {
-  ISong,
+  "@assetType": string,
+  "@key": string,
+  "@lastTouchBy": string,
+  "@lastTx": string,
+  "@lastUpdated": Date|string,
+  "_isDelete"?: boolean,
+  "_timestamp"?: Date|string,
+  "_txId"?: string,
+  "name": string
   details: {
     album: IAlbum,
     artist: IArtist
