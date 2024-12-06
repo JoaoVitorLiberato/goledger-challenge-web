@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit"
-import counterReducer from "./modules/counter"
+import paylistModuleReducer from "./modules/playlistModules"
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer
+    playlist: paylistModuleReducer,
   }
 })
 

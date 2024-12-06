@@ -19,9 +19,12 @@ export const CardsContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  max-height: 450px;
+  overflow-y: scroll;
 
   @media (max-width: 500px) {
     display: none;
+    max-height: 100%;
   }
 
 `

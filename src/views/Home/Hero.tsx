@@ -13,7 +13,7 @@ function Hero () {
       <LimitationWidth>
         <Session>
           <h2>
-            Já ouviu seus cantores preferidos?
+            Já ouviu suas músicas favoritas?
           </h2>
 
           <p>
@@ -25,7 +25,7 @@ function Hero () {
 
           <Button>
             <span>
-              Conhecer
+              Acessar Playlist
             </span>
           </Button>
         </Session>

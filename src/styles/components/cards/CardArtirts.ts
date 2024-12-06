@@ -15,30 +15,37 @@ export const Card = styled.div`
   }
 
   @media (min-width: 501px) {
-    width: 280px;
+    width: 200px;
+    height: 250px;
     margin: 10px;
   }
 `
 
 export const ContentImage = styled.div`
   width: 100%;
-  max-width: 200px;
   height: 200px;
-  margin: 0 auto;
+
+  @media (min-width: 501px)  {
+    height: 150px;
+  }
 `
 
 export const ImageArtirt = styled.img`
   width: 100%;
   height: 100%;
-  border-radius: 130px;
+  border-radius: 20px;
 `
 export const Data = styled.article`
   padding: 10px;
   text-align: center;
 
   h4 {
-    font-size: 22px;
-    color:#000
+    font-size: 18px;
+    color:#000;
+
+    @media (max-width: 500px) {
+      font-size: 22px;
+    }
   }
 
   span {

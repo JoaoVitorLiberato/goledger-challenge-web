@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CardArtirts from "../cards/CardArtirts"
+import CardArtirts from "../cards/CardArtist"
 import { CarouselProps } from "../../types/containerElemets"
 import {
   CarouselContainer,
@@ -10,7 +10,7 @@ import {
   Slide
 } from "../../styles/components/caroucel/CaroucelCardArtirts"
 
-const CaroucelCardsArtirts: React.FC<CarouselProps> = ({ slides }) => {
+const CaroucelCardsArtists: React.FC<CarouselProps> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const goToNext = (): void => {
@@ -36,7 +36,7 @@ const CaroucelCardsArtirts: React.FC<CarouselProps> = ({ slides }) => {
                 <CardArtirts
                   image={slide.image}
                   name={slide.name}
-                  category={slide.category}
+                  country={slide?.country}
                   key={`${slide.name}-${index}`}
                 />
               </Slide>
@@ -68,4 +68,4 @@ const CaroucelCardsArtirts: React.FC<CarouselProps> = ({ slides }) => {
   );
 };
 
-export default CaroucelCardsArtirts
+export default CaroucelCardsArtists

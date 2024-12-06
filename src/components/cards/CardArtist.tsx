@@ -9,13 +9,13 @@ import {
 type ICard = {
   image?: string;
   name?: string,
-  category?: string
+  country?: string
 }
 
-const CardArtirts: FC<ICard> = ({
+const CardArtisrt: FC<ICard> = ({
   image,
   name,
-  category
+  country
  }) => {
   return(
     <Card
@@ -23,17 +23,17 @@ const CardArtirts: FC<ICard> = ({
     >
       <ContentImage>
         <ImageArtirt 
-          src={image}
+          src={image || "https://th.bing.com/th/id/OIP.rm4o2LZV2iOu83ECOsG-pwHaEm?rs=1&pid=ImgDetMain"}
           alt={`Ouça agora ${name} e viaje para outro mundo.`}
         />
       </ContentImage>
 
       <Data>
         <h4>{ name }</h4>
-        <span>{ category }</span>
+        <span>{ country }</span>
       </Data>
     </Card>
   )
 }
 
-export default CardArtirts
+export default CardArtisrt

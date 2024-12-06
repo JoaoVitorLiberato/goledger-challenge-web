@@ -7,7 +7,7 @@ export interface IChildren {
 export interface Slide {
   name?:string;
   image?:string;
-  category?:string;
+  country?:string;
 }
 
 export interface CarouselProps {
