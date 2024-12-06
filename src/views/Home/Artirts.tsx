@@ -11,7 +11,7 @@ import {
 } from "../../styles/views/home/artirts"
 
 function Artists () {
-  const playlist = useSelector((state: RootState) => state.playlist)
+  const { artists } = useSelector((state: RootState) => state.playlist)
 
   return (
     <Container>
@@ -22,7 +22,7 @@ function Artists () {
 
         <CardsContainer>
           {
-            playlist.artists.map((item) => (
+            artists.map((item) => (
               <CardArtist
                 name={item.name}
                 country={item.country}
@@ -34,7 +34,7 @@ function Artists () {
 
         <CardsContainerMobile>
           <CaroucelCardsArtists
-            slides={playlist.artists}
+            slides={artists}
           />
         </CardsContainerMobile>
       </LimitationWidth>
