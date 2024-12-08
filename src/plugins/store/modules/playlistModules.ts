@@ -5,7 +5,8 @@ import {
   IAlbum,
   IArtist,
   ISong,
-  IList
+  IList,
+  IPlaylist
 } from "../../../types/assetsTypes"
 
 const moduleState: playlistInterface = {
@@ -16,7 +17,8 @@ const moduleState: playlistInterface = {
   },
   artists: [],
   albuns: [],
-  songs: []
+  songs: [],
+  playlist: []
 }
 
 export const playlistModule = createSlice({
@@ -31,6 +33,9 @@ export const playlistModule = createSlice({
     },
     setSong: (state: { songs: ISong[] }, action: PayloadAction<ISong[]>) => {
       state.songs = action.payload
+    },
+    setPlaylist: (state: { playlist: IPlaylist[] }, action: PayloadAction<IPlaylist[]>) => {
+      state.playlist = action.payload
     },
     setListSong: (state, action: PayloadAction<IList>) => {
       state.listSong = action.payload
@@ -47,6 +52,7 @@ export const {
   setAlbuns,
   setArtist,
   setSong,
+  setPlaylist,
   setListSong,
   setPlayerSong,
 } = playlistModule.actions

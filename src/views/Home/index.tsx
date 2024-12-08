@@ -1,14 +1,18 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { setAlbuns, setArtist, setSong, setListSong } from "../../plugins/store/modules/playlistModules"
 import Debounce from "lodash.debounce"
 import { middlewareGetData } from "../../middlewares/middlewareGetData"
-import { IAlbum, IArtist, ISong } from "../../types/assetsTypes"
+import { setAlbuns, setArtist, setSong, setPlaylist } from "../../plugins/store/modules/playlistModules"
+import { IAlbum, IArtist, ISong, IPlaylist } from "../../types/assetsTypes"
 
 import LayoutApp from "../../components/layout"
 import Hero from "./Hero"
 import Paylist from "./Paylist"
 import Artists from "./Artirts"
+
+import DialogCreatePlaylist from "../../components/dialogs/DialogCreatePlaylist"
+import DialogPlaylist from "../../components/dialogs/DialogPlaylist"
+import DialogDetailArtist from "../../components/dialogs/DialogDetaisArtist"
 
 function HomeView () {
   const dispatch = useDispatch()
@@ -19,42 +23,17 @@ function HomeView () {
   
   const getSerchAllData = Debounce(
     async function () {
-      const PLAYLIST_SONG = new Set()
-
-      const [ artists, albums, songs] = await Promise.all([
+      const [ playlist, artists, albums, songs] = await Promise.all([
+        middlewareGetData("playlist"),
         middlewareGetData("artist"),
         middlewareGetData("album"),
         middlewareGetData("song"),
       ])
 
-      const SONG_API_DATA = songs as ISong[]
-      const ALBUM_API_DATA = albums as IAlbum[]
-      const ARTIST_API_DATA =artists as IArtist[]
-
-      SONG_API_DATA.forEach((song) => {
-        ALBUM_API_DATA.find((album) => {
-          ARTIST_API_DATA.find((artist) => {
-            if (String(album["@key"]) === String(song.album["@key"])) {
-              if (String(artist["@key"]) === String(album.artist["@key"])) {
-                PLAYLIST_SONG.add({
-                  [song["@key"]]: {
-                    ...song,
-                    details: {
-                      album: album,
-                      artist: artist
-                    }
-                  }
-                })
-              }
-            }
-          })
-        })
-      })
-
+      dispatch(setPlaylist(playlist as IPlaylist[]))
       dispatch(setArtist(artists as IArtist[]))
       dispatch(setAlbuns(albums as IAlbum[]))
       dispatch(setSong(songs as ISong[]))
-      dispatch(setListSong(Object.assign({}, ...PLAYLIST_SONG)))
     },
     400
   )
@@ -64,6 +43,12 @@ function HomeView () {
       <Hero />
       <Paylist />
       <Artists />
+
+      {/* componentes para execução de uma tarefa especifica */}
+        <DialogCreatePlaylist />
+        <DialogPlaylist />
+        <DialogDetailArtist />
+      {/* componentes para execução de uma tarefa especifica */}
     </LayoutApp>
   )
 }

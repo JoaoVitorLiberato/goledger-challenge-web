@@ -1,19 +1,55 @@
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { setDialogListPlaylist } from "../../plugins/store/modules/dialogModules"
+import  { RootState } from "../../plugins/store"
+import { IPlaylist } from "../../types/assetsTypes"
+import DialogComponent from "../../components/dialogs/DialogComponent"
+import CaroucelCardPlaylist from "../../components/caroucel/CaroucelCardPlaylist"
+
 import {
   Container,
   LimitationWidth,
   Session,
   Button,
-  ImageModel
+  ImageModel,
+  ContainerDialogPlaylist
 } from "../../styles/views/home/hero"
+import TextField from "@mui/material/TextField"
 
 function Hero () {
+  const [ input, setInput ] = useState("")
+  const [ searchPlaylist, setSearchPlaylist ] = useState([] as IPlaylist[])
+
+  const { playlist } = useSelector((state:RootState) => state.playlist)
+  const { dialogListPlaylist } = useSelector((state:RootState) => state.dialog)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    filterSearchPlaylist()
+  }, [input, playlist])
+
+  const filterSearchPlaylist = (): void => {
+    if (input === "") {
+      setSearchPlaylist([])
+      return
+    }
+    
+    const PLAYLIST_FILTERD = playlist.filter((item) => {
+      if (String(item.name).toUpperCase().includes(String(input).toUpperCase())) {
+        return item
+      }
+    })
+
+    setSearchPlaylist(PLAYLIST_FILTERD)
+  }
 
   return (
     <Container>
       <LimitationWidth>
         <Session>
           <h2>
-            Já ouviu suas músicas favoritas?
+            Já ouviu seus cantores preferidos?
           </h2>
 
           <p>
@@ -23,11 +59,41 @@ function Hero () {
             sonoras.
           </p>
 
-          <Button>
+          <Button
+            onClick={() => (
+              dispatch(setDialogListPlaylist(!dialogListPlaylist))
+            )}
+          >
             <span>
-              Acessar Playlist
+              Conhecer
             </span>
           </Button>
+
+          <DialogComponent
+            add="active"
+            title="Playlist's"
+            open={dialogListPlaylist}
+            close={() => (
+              dispatch(setDialogListPlaylist(!dialogListPlaylist))
+            )}
+          >
+            <ContainerDialogPlaylist>
+              <TextField
+                label="Nome da Playlist"
+                placeholder="Informe no nome da sua playlist para procurar"
+                color="warning"
+                variant="outlined"
+                onChange={(e) => (setInput(e.target.value))}
+              />
+
+              {
+                searchPlaylist.length > 1 &&
+                  <CaroucelCardPlaylist
+                    slides={searchPlaylist}
+                  />
+              }
+            </ContainerDialogPlaylist>
+          </DialogComponent>
         </Session>
 
           <ImageModel 

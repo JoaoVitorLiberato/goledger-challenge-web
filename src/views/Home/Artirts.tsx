@@ -17,16 +17,17 @@ function Artists () {
     <Container>
       <LimitationWidth>
         <Title>
-          Alguns artistas
+          Alguns artista populares
         </Title>
 
         <CardsContainer>
           {
-            artists.map((item) => (
+            (artists).slice(0, 8).map((item) => (
               <CardArtist
+                id={item["@key"]}
                 name={item.name}
                 country={item.country}
-                key={`card-artist-${item.name}-${item["@lastTouchBy"]}`}
+                key={`card-artist-${item.name}-${item["@lastTouchBy"]}${Math.random()}`}
               />
             ))
           }

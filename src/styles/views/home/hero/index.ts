@@ -72,3 +72,58 @@ export const ImageModel = styled.img`
     height: 500px;
   }
 `
+
+// style para children do dialog
+export const ContainerDialogPlaylist = styled.div``
+
+export const ContentCardPlaylistCache = styled.div`
+  text-align: center;
+
+  h3 {
+    margin: 40px 0 0;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  
+  @media (min-width: 501px) {
+    text-align: start;
+  }
+`
+
+export const CardPlaylistCache = styled.div`
+  margin: 10px 5px 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 170px;
+  border: 1px solid #c3c3c3;
+  border-radius: 7px;
+  text-align: center;
+
+  @media (max-width: 500px) {
+    margin: 10px auto 20px;
+  }
+
+  h5 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  button {
+    background-color: #ffd4d4;
+    padding: 8px 5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    cursor: pointer;
+    transition: .8s ease all;
+
+    &:hover {
+      background-color: #eb9b9b;
+    }
+  }
+`

@@ -47,6 +47,26 @@ export interface IArtist {
   "country"?: string
 }
 
+
+export interface IPlaylist {
+  "@assetType": string,
+  "@key": string,
+  "@lastTouchBy": string,
+  "@lastTx": string,
+  "@lastUpdated": Date|string,
+  "_isDelete"?: boolean,
+  "_timestamp"?: Date|string,
+  "_txId"?: string,
+  "private": boolean,
+  "name": string
+  "songs": Array<{
+    "@assetType": string,
+    "@key": string
+  }>
+}
+
+
+
 export interface IList {
   "@assetType": string,
   "@key": string,

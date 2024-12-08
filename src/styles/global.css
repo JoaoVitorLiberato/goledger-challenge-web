@@ -5,3 +5,11 @@
   width: 100%;
   font-family: "Roboto", sans-serif;
 }
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}

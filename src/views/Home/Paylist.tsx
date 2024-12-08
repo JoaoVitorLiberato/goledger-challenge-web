@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux"
-import { setPlayerSong } from "../../plugins/store/modules/playlistModules"
+import { setPlayerSong, setListSong } from "../../plugins/store/modules/playlistModules"
 import { RootState } from "../../plugins/store"
 
 import {
@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from "react"
 
 function Playlist () {
+  const [ songId, setSongId ] = useState("")
   const [ activeSession, setActiveSession ] = useState(false)
   const dispatch = useDispatch()
   const { listSong, player } = useSelector((state: RootState) => state.playlist)
@@ -27,6 +28,25 @@ function Playlist () {
         }
       })
   }, [listSong])
+
+  function deleteSongPlayer () {
+    const PLAYLIST = new Set()
+
+    Object.keys(listSong).forEach((item) => {
+      if (String(item) !== String(songId)) {
+        PLAYLIST.add({
+          [item]: listSong[item]
+        })
+      }
+    })
+
+    dispatch(setPlayerSong({
+      status: "",
+      song: {}
+    }))
+
+    dispatch(setListSong(Object.assign({}, ...PLAYLIST)))
+  }
 
   return(
     <>
@@ -43,6 +63,7 @@ function Playlist () {
                       key={`li-${listSong[item]["@key"]}`}
                       bg={/^(active)$/i.test(String(player.status)) && String(player.song["@key"]) === String(item) ? "#00e7ff21" : ""}
                       onClick={() => (
+                        setSongId(listSong[item]["@key"]),
                         dispatch(setPlayerSong({
                           status: "active",
                           song: listSong[item]
@@ -55,6 +76,7 @@ function Playlist () {
 
                       <button
                         onClick={() => (
+                          setSongId(listSong[item]["@key"]),
                           dispatch(setPlayerSong({
                             status: "active",
                             song: listSong[item]
@@ -131,8 +153,10 @@ function Playlist () {
                       >
                         Parar
                       </button>
+
                       <button
                         className="detail_content-action-delete"
+                        onClick={deleteSongPlayer}
                       >
                         Excluir
                       </button>

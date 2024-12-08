@@ -34,9 +34,9 @@ const CaroucelCardsArtists: React.FC<CarouselProps> = ({ slides }) => {
             slides.map((slide, index) => (
               <Slide key={index}>
                 <CardArtirts
+                  id={slide["@key"]}
                   image={slide.image}
                   name={slide.name}
-                  country={slide?.country}
                   key={`${slide.name}-${index}`}
                 />
               </Slide>

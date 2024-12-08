@@ -24,7 +24,7 @@ export const CarouselTrack = styled.div<{ translate: number }>`
 
 export const Slide = styled.div<{ bgcolor?: string }>`
   min-width: 100%;
-  height: 370px;
+  height: 150px;
   background-color: ${(props) => props.bgcolor || "transparent"};
   display: flex;
   justify-content: center;
@@ -54,3 +54,41 @@ export const PrevButton = styled(Button)`
 `
 
 export const NextButton = styled(Button)``
+
+export const CardPlaylistCache = styled.div`
+  margin: 10px 5px 20px;
+  padding: 10px;
+  width: 100%;
+  max-width: 170px;
+  border: 1px solid #c3c3c3;
+  border-radius: 7px;
+  text-align: center;
+
+  @media (max-width: 500px) {
+    margin: 10px auto 20px;
+  }
+
+  h5 {
+    margin-bottom: 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  button {
+    background-color: #ffd4d4;
+    padding: 8px 5px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    cursor: pointer;
+    transition: .8s ease all;
+
+    &:hover {
+      background-color: #eb9b9b;
+    }
+  }
+`
