@@ -1,5 +1,13 @@
 # GoLedger Challenge
 
+## Instruções
+
+```bash
+- Clone o arquivo .env.example e renomei com o nome .env.local na raiz do projeto
+- Para instalar a dependêcias => npm install
+- Para rodar o App => npm run dev
+```
+
 In this challenge you will create a web interface to a blockchain application. In this application you must implement a streming service-like interface, with artist, album, song and playlist registration.
 
 # Requirements
