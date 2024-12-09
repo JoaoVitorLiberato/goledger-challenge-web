@@ -1,5 +1,5 @@
 import React from "react";
-import { IPlaylist } from "./assetsTypes"
+import { IPlaylist, IAlbum } from "./assetsTypes"
 
 export interface IChildren {
   children: React.ReactNode
@@ -17,4 +17,7 @@ export interface CarouselProps {
 }
 export interface CarouselPlaylistProps {
   slides: IPlaylist[];
+}
+export interface CarouselAlbumProps {
+  slides: IAlbum[];
 }

@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const HeaderDialog = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
-  button {
+  div {
     max-width: 100px;
-    cursor: pointer;
+    button {
+      cursor: pointer;
+    } 
   }
 `;

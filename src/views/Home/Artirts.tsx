@@ -7,8 +7,10 @@ import {
   LimitationWidth,
   CardsContainer,
   CardsContainerMobile,
-  Title
+  Title,
+  Action
 } from "../../styles/views/home/artirts"
+import DialogCreatedAssets from "../../components/dialogs/DialogCreateAssets"
 
 function Artists () {
   const { artists } = useSelector((state: RootState) => state.playlist)
@@ -38,6 +40,13 @@ function Artists () {
             slides={artists}
           />
         </CardsContainerMobile>
+
+        <Action>
+          <DialogCreatedAssets
+            name="Artista"
+            type="artist"
+          />
+        </Action>
       </LimitationWidth>
     </Container>
   )

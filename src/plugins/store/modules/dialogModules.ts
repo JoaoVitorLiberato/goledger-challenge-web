@@ -7,7 +7,8 @@ const moduleState: dialogInterface = {
   dialogCreatePlaylist: false,
   dialogListPlaylist: false,
   dialogPlaylist: false,
-  dialogDetailArtist: false
+  dialogDetailArtist: false,
+  dialogDetailAlbum: false
 }
 
 export const dialogModule = createSlice({
@@ -25,6 +26,9 @@ export const dialogModule = createSlice({
     },
     setDialogDetailArtist: (state: { dialogDetailArtist: boolean }, action: PayloadAction<boolean>) => {
       state.dialogDetailArtist = action.payload
+    },
+    setDialogDetailAlbum: (state: { dialogDetailAlbum: boolean }, action: PayloadAction<boolean>) => {
+      state.dialogDetailAlbum = action.payload
     }
   },
 })
@@ -34,7 +38,8 @@ export const {
   setDialogCreatePlaylist,
   setDialogPlaylist,
   setDialogListPlaylist,
-  setDialogDetailArtist
+  setDialogDetailArtist,
+  setDialogDetailAlbum
 } = dialogModule.actions
 
 export default dialogModule.reducer

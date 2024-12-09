@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.div``
 
-export const ContentSongs = styled.div`
+export const ContentSong = styled.div`
   margin-bottom: 40px;
 
   header {
@@ -92,27 +92,4 @@ export const ContentSongs = styled.div`
 
 `
 
-export const ContentAlbums = styled.div`
-  .mobile-caroucel {
-    @media (min-width: 501px) {
-      display: none;
-    }
-  }
-`
-
-
-export const ContentCardAlbum = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-
-  div {
-    max-width: 150px;
-    margin: 10px 5px 0;
-  }
-
-  @media (max-width:500px) {
-      display: none;
-    }
-`
+export const ContentUpdate = styled.div``

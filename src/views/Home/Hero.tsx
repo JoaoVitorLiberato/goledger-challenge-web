@@ -36,7 +36,7 @@ function Hero () {
     }
     
     const PLAYLIST_FILTERD = playlist.filter((item) => {
-      if (String(item.name).toUpperCase().includes(String(input).toUpperCase())) {
+      if (item.name.toUpperCase().includes(String(input).toUpperCase())) {
         return item
       }
     })
@@ -70,10 +70,11 @@ function Hero () {
           </Button>
 
           <DialogComponent
-            add="active"
+            add="createPlaylist"
             title="Playlist's"
             open={dialogListPlaylist}
             close={() => (
+              setSearchPlaylist([]),
               dispatch(setDialogListPlaylist(!dialogListPlaylist))
             )}
           >
@@ -87,10 +88,11 @@ function Hero () {
               />
 
               {
-                searchPlaylist.length > 1 &&
+                searchPlaylist.length ?
                   <CaroucelCardPlaylist
                     slides={searchPlaylist}
                   />
+                : ""
               }
             </ContainerDialogPlaylist>
           </DialogComponent>

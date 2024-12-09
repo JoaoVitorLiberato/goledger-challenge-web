@@ -13,13 +13,14 @@ import Artists from "./Artirts"
 import DialogCreatePlaylist from "../../components/dialogs/DialogCreatePlaylist"
 import DialogPlaylist from "../../components/dialogs/DialogPlaylist"
 import DialogDetailArtist from "../../components/dialogs/DialogDetaisArtist"
+import DialogDetailsAlbum from "../../components/dialogs/DialogDetailsAlbum"
 
 function HomeView () {
   const dispatch = useDispatch()
 
   useEffect(() => {
     getSerchAllData()
-  })
+  }, [])
   
   const getSerchAllData = Debounce(
     async function () {
@@ -48,6 +49,7 @@ function HomeView () {
         <DialogCreatePlaylist />
         <DialogPlaylist />
         <DialogDetailArtist />
+        <DialogDetailsAlbum />
       {/* componentes para execução de uma tarefa especifica */}
     </LayoutApp>
   )

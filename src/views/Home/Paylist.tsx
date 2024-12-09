@@ -11,23 +11,12 @@ import {
   Song
   
 } from "../../styles/views/home/playlist"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 function Playlist () {
   const [ songId, setSongId ] = useState("")
-  const [ activeSession, setActiveSession ] = useState(false)
   const dispatch = useDispatch()
   const { listSong, player } = useSelector((state: RootState) => state.playlist)
-
-  useEffect(() => {
-    Object.keys(listSong)
-      .forEach((item) => {
-        if (listSong[item]) {
-          setActiveSession(true)
-          return
-        }
-      })
-  }, [listSong])
 
   function deleteSongPlayer () {
     const PLAYLIST = new Set()
@@ -51,7 +40,7 @@ function Playlist () {
   return(
     <>
       {
-        activeSession &&
+        Object.keys(listSong).length ?
         <Container>
           <LimitationWidth>
             <ContainterListSongs>
@@ -170,7 +159,7 @@ function Playlist () {
                 />
             }
           </LimitationWidth>
-        </Container>
+        </Container> : ""
       }
     </>
   )

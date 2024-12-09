@@ -7,13 +7,19 @@ import { RootState } from "../../plugins/store"
 import { IArtist, IAlbum, ISong } from "../../types/assetsTypes"
 import { deleteAsset } from "../../middlewares/middlewareServices"
 import { middlewareGetData } from "../../middlewares/middlewareGetData"
+import { mountedObjectPlaylist } from "../../helpers/mountedObjectPlaylist"
+import { setListSong } from "../../plugins/store/modules/playlistModules"
+import CaroucelCardAlbum from "../caroucel/CaroucelCardAlbum"
 
 import {
   Container,
   ContentSongs,
-  ContentAlbums
+  ContentAlbums,
+  ContentCardAlbum
 } from "../../styles/components/dialogs/DialogDetailArtist"
+import FormUpdateAssets from "../form/update/FormUpdateAssets"
 import { Alert, Snackbar } from "@mui/material"
+import CardAlbum from "../cards/CardAlbum"
 
 export default function DialogDetailArtist () {
   const [ updateID, setUpdateID ] = useState("")
@@ -37,6 +43,8 @@ export default function DialogDetailArtist () {
         if (String(artist["@key"] || "") === String(ARTIST_ID || "")) return artist
       })
 
+      if (!DETAILS_ARTIST) throw Error()
+
       return DETAILS_ARTIST as IArtist
     } catch {
       return {
@@ -48,8 +56,10 @@ export default function DialogDetailArtist () {
   }
 
   useEffect(() => {
+    renderDatailsArtist()
     renderSongsArtist()
-  })
+    renderAlbum()
+  }, [artists, albuns, songs])
 
   const renderSongsArtist = () => {
     try {
@@ -68,7 +78,7 @@ export default function DialogDetailArtist () {
         if (ALBUNS_ID.includes(String(song.album["@key"]))) {
           return song
         }
-      })
+      }) as ISong[]
     } catch {
       return {
         error: true,
@@ -80,6 +90,23 @@ export default function DialogDetailArtist () {
     return albuns.find(item => {
       if (String(item["@key"]) === String(id)) return item
     }) as IAlbum
+  }
+
+  const renderAlbum = () => {
+    try {
+      const ARTIST_ID = sessionStorage.getItem("artist-selected")
+      if (!ARTIST_ID) throw Error()
+
+      return albuns.filter(item => {
+        if (String(item.artist["@key"]) === String(ARTIST_ID)) {
+          return item
+        }
+      }) as IAlbum[]
+    } catch {
+      return {
+        error: true,
+      }
+    }
   }
 
   const handleDeleteSong = async(data:ISong) => {
@@ -126,30 +153,50 @@ export default function DialogDetailArtist () {
     }
   }
 
+  const mountedSongPlayerPlayer = () => {
+    const DATA_UPDATE = mountedObjectPlaylist({
+      albuns: albuns,
+      artists: artists,
+      songs: renderSongsArtist() as ISong[]
+    })
+
+    dispatch(setListSong(DATA_UPDATE))
+    sessionStorage.removeItem("artist-selected"),
+    dispatch(setDialogDetailArtist(!dialogDetailArtist))
+  }
+
 
   return (
     <DialogComponent
       open={dialogDetailArtist}
-      add="no"
+      add="createAssets"
+      type="album"
       close={() => (
         sessionStorage.removeItem("artist-selected"),
+        setUpdateID(""),
         dispatch(setDialogDetailArtist(!dialogDetailArtist))
       )}
       title={renderDatailsArtist()?.title || `${renderDatailsArtist()?.name} - ${renderDatailsArtist()?.country}`}
     >
       {
-        renderDatailsArtist()?.error ? renderDatailsArtist()?.description :
+        renderDatailsArtist()?.error ?
+          renderDatailsArtist()?.description :
           <Container>
             <ContentSongs>
               {
-                renderSongsArtist().error ? <></> : 
+                renderSongsArtist().error === true || renderSongsArtist().length === 0 ?
+                  <>Sem Músicas</> : 
                   <>
                     <header>
                       <span>
                         Todas as musicas do artista
                       </span>
 
-                      <button>
+                      <button
+                        onClick={() => (
+                          mountedSongPlayerPlayer()
+                        )}
+                      >
                         <span>
                           Tocar agora
                         </span>
@@ -178,7 +225,7 @@ export default function DialogDetailArtist () {
 
                             <div>
                               <button
-                                disabled={loading}
+                                disabled={loading || updateID !== ""}
                                 onClick={() => (setUpdateID(item["@key"]))}
                               >
                                 Editar
@@ -187,15 +234,22 @@ export default function DialogDetailArtist () {
                               {
                                 (updateID !== "" && updateID === item["@key"]) &&
                                 <>
-                                  teste
+                                  <button
+                                    onClick={() => (setUpdateID(""))}
+                                  >
+                                    Fechar
+                                  </button>
+                                  <FormUpdateAssets 
+                                    data={item}
+                                  />
                                 </>
                               }
 
                               <button
-                                disabled={loading}
+                                disabled={loading || updateID !== ""}
                                 onClick={() => (handleDeleteSong(item))}
                               >
-                                { loading ? "Aguarde..." : "Remover"}
+                                { loading ? "Aguarde..." : "Remover" }
                               </button>
                             </div>
                           </li>
@@ -205,10 +259,39 @@ export default function DialogDetailArtist () {
                   </>
               }
             </ContentSongs>
-
-            <ContentAlbums>
-              albums
-            </ContentAlbums>
+            
+            {
+              renderAlbum().length ?
+                <ContentAlbums>
+                  <span>
+                    Todos os albuns
+                  </span>
+                  
+                  <div
+                    className="mobile-caroucel"
+                  >
+                    <CaroucelCardAlbum
+                      slides={renderAlbum() as IAlbum[]}
+                    />
+                  </div>
+                  
+                  <ContentCardAlbum>
+                    {
+                      !("error" in renderAlbum()) &&
+                        renderAlbum().map(item => (
+                          <div
+                            key={item["@key"]}
+                          >
+                            <CardAlbum
+                              name={item.name}
+                              id={item["@key"]}
+                            />
+                          </div>
+                        ))
+                    }
+                  </ContentCardAlbum>
+                </ContentAlbums> : "O artista não possui albuns"
+            }
           </Container>
       }
 

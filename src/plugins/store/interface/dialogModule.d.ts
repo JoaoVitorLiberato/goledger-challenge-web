@@ -3,6 +3,7 @@ interface dialogInterface {
   dialogCreatePlaylist: boolean
   dialogPlaylist: boolean
   dialogDetailArtist: boolean
+  dialogDetailAlbum: boolean
 }
 
 export {

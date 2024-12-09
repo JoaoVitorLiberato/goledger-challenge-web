@@ -16,7 +16,7 @@ export const CardsContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  max-height: 450px;
+  max-height: 650px;
   margin-top: 40px;
 
   @media (max-width: 500px) {
@@ -35,4 +35,8 @@ export const CardsContainerMobile = styled.div`
 export const Title = styled.h2`
   text-transform: uppercase;
   margin-top: 20px;
+`
+
+export const Action = styled.div`
+  margin-top: 40px;
 `
